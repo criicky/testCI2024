@@ -5,12 +5,18 @@ from node import Node
 from protectedOperators import unary_ops, binary_ops
 
 CONSTANT = [
-    np.pi,
-    np.e,
-    np.sqrt(2),
-    np.sqrt(3),
-    random.uniform(-10.0, -1.0),
-    random.uniform(1.0, 10.0),
+    np.pi,           # π ≈ 3.14159
+    np.e,            # e ≈ 2.71828
+    (1 + np.sqrt(5)) / 2,  # Golden ratio φ ≈ 1.61803
+    np.sqrt(2),      # √2 ≈ 1.41421
+    np.sqrt(3),      # √3 ≈ 1.73205
+    np.log(2),       # ln(2) ≈ 0.69314
+    np.log(10),      # ln(10) ≈ 2.30259
+    1.0,             # Unity
+    2.0,             # Simple integer
+    0.5,             # Half
+    -1.0,            # Negative unity
+    0.0              # Zero
 ]
 
 class Tree:
