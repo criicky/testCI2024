@@ -4,6 +4,15 @@ import matplotlib.pyplot as plt
 from node import Node
 from protectedOperators import unary_ops, binary_ops
 
+CONSTANT = [
+    np.pi,
+    np.e,
+    np.sqrt(2),
+    np.sqrt(3),
+    random.uniform(-10.0, -1.0),
+    random.uniform(1.0, 10.0),
+]
+
 class Tree:
     def __init__(self, max_depth, x_train, y_train, tree_attempts=10):
         self.root = None
@@ -34,7 +43,7 @@ class Tree:
             if random.random() < 0.5:
                 return Node('variable', self.vars[random.randint(0, self.var_num - 1)])
             else:
-                return Node('constant', random.uniform(const_min, const_max))
+                return Node('constant', CONSTANT[random.randint(0, len(CONSTANT) - 1)])
         else:
             if random.random() < 0.7:
                 if random.random() < 0.5:
@@ -50,7 +59,7 @@ class Tree:
                 if random.random() < 0.5:
                     return Node('variable', self.vars[random.randint(0, self.var_num - 1)])
                 else:
-                    return Node('constant', random.uniform(const_min, const_max))
+                    return Node('constant', CONSTANT[random.randint(0, len(CONSTANT) - 1)])
 
     def compute_fitness(self, get_pred=False):
         """
@@ -80,9 +89,9 @@ class Tree:
         except Exception as e:
             # Helpful debug output: show expression and what names were available.
             # Remove or reduce prints once you debugged the problem.
-            print("ERROR evaluating tree expression:", e)
-            print("Expression:", expression)
-            print("Available names in eval globals (sample):", sorted(list(eval_globals.keys()))[:40])
+            #print("ERROR evaluating tree expression:", e)
+            #print("Expression:", expression)
+            #print("Available names in eval globals (sample):", sorted(list(eval_globals.keys()))[:40])
             # Set fitness to infinity so GP treats this individual as invalid
             self.fitness = np.inf
 
