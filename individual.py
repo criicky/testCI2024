@@ -362,6 +362,19 @@ class Tree:
             return self.clone_tree(), other_tree.clone_tree()
         
         return offspring1, offspring2
+    
+    def size(self):
+        """Return the number of nodes in this tree."""
+        def count_nodes(node):
+            if node is None:
+                return 0
+            # If it's a leaf (variable or constant)
+            if not hasattr(node, "left") and not hasattr(node, "right"):
+                return 1
+            left_count = count_nodes(getattr(node, "left", None))
+            right_count = count_nodes(getattr(node, "right", None))
+            return 1 + left_count + right_count
+        return count_nodes(self.root)
 
     def plot(self):
         """Plot the tree. If a node has only one child, the line to that child is drawn vertically.
